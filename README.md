@@ -1,1 +1,1 @@
-# Brain-tissue-segmentation-using-Expectation-Maximization-EM-and-GMM
+# Brain tissue segmentation using Expectation Maximization (EM) algorithm for Gaussian Mixture Models (GMM)
