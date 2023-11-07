@@ -29,9 +29,11 @@ The model initializes with either random parameters or using KMeans clustering f
 
 ## Results
 
-The algorithm's effectiveness was quantitatively evaluated using the Dice Score (DSC), a metric that computes the similarity between predicted and ground truth segmentations. Tables 1 and 2 present the algorithm's performance metrics alongside comparisons with other segmentation tools. Figure 2 offers a visual representation of the segmentation outcomes achieved with our method.
+The algorithm's effectiveness was quantitatively evaluated using the Dice Score (DSC), a metric that computes the similarity between predicted and ground truth segmentations. Tables 1 and 2 present the algorithm's performance metrics alongside comparisons with other segmentation tools. 
 
-**Table 1: Evaluation results of the Expectation Maximization Algorithm on the test set**
+<p align="center">
+  <strong>Table 1: Evaluation results of the Expectation Maximization Algorithm on the test set</strong>
+</p>
 
 | Initialization | Modalities | GM [DSC]            | WM [DSC]            | CSF [DSC]           | Iterations       | Time [s]          |
 |----------------|------------|---------------------|---------------------|---------------------|------------------|-------------------|
@@ -40,22 +42,15 @@ The algorithm's effectiveness was quantitatively evaluated using the Dice Score 
 | Random         | T1         | 0.8025 ± 0.0819     | 0.7284 ± 0.1383     | 0.7860 ± 0.0670     | 346 ± 108        | 65.87 ± 18.42     |
 | Random         | T1+FLAIR   | **0.8468 ± 0.0450** | 0.7978 ± 0.0233     | 0.8082 ± 0.0278     | 333 ± 117        | 147.71 ± 51.16    |
 
-**Table 2: Evaluation results of KMeans and SPM**
+<p align="center">
+  <strong>Table 2: Evaluation results of KMeans and SPM</strong>
+</p>
 
 | Method   | Initialization | Modalities | GM [DSC]         | WM [DSC]         | CSF [DSC]        | Time [s]         |
 |----------|----------------|------------|------------------|------------------|------------------|------------------|
 | K-means  | K-means ++     | T1         | 0.8222 ± 0.0356  | 0.7464 ± 0.0338  | 0.8542 ± 0.0078  | 3.57 ± 0.12      |
 | K-means  | K-means ++     | T1+FLAIR   | **0.8243 ± 0.0357** | **0.7500 ± 0.0315** | **0.8560 ± 0.0071** | **3.61 ± 0.19**  |
 | SPM      | -              | T1         | **0.75 ± 0.03**  | **0.81 ± 0.03**  | **0.76 ± 0.02**  | -                |
-
-
-For a more detailed analysis and visual representation of the segmentation results, please refer to the figures and tables included in this repository.
-
-<p align="center">
-  <img src="img/results.png" alt="Result of the segmentation using our approach with different initializations and modalities." width="600"/>
-  <br>
-  <em>Fig.2. Result of the segmentation using our approach with different initializations and modalities.</em>
-</p>
 
 
 ## Conclusion
