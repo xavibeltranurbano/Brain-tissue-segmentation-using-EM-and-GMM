@@ -1,10 +1,7 @@
 # Brain tissue segmentation using Expectation Maximization (EM) algorithm for Gaussian Mixture Models (GMM)
+**Author:** Xavier Beltran Urbano and Frederik Hartmann
 
 This repository contains the implementation and results of a novel approach to brain tissue segmentation, combining the Expectation Maximization (EM) algorithm with Gaussian Mixture Models (GMM). Developed at the University of Girona as part of the Erasmus Mundus Joint Master Degree in Medical Imaging and Applications (MAIA), this method aims to enhance the accuracy of medical diagnoses and treatment planning for neurological conditions.
-
-## Introduction
-
-Medical image segmentation is a critical step in the diagnosis and treatment of neurological diseases. Precise segmentation of brain tissues such as cerebrospinal fluid (CSF), white matter (WM), and gray matter (GM) from magnetic resonance (MR) images plays a pivotal role in quantitative brain analysis. Traditional techniques face challenges in accuracy and consistency, which this project aims to overcome through probabilistic clustering methods. By leveraging the EM algorithm in conjunction with GMM, we can assign membership weights to voxels and accurately segment brain tissues, potentially aiding in the identification and treatment of conditions like Alzheimer's and Parkinson's disease.
 
 ## Dataset
 
@@ -14,7 +11,12 @@ The segmentation process was conducted using a multimodal dataset comprising 5 M
 - FLAIR-weighted (FLAIR)
 - Ground Truth (GT)
 
-These modalities offer complementary information about brain structures, essential for achieving a comprehensive segmentation. The T1 modality provides detailed anatomical information, FLAIR highlights fluid and lesion differentiation, and the Ground Truth data serve as a benchmark for assessing segmentation accuracy.
+<p align="center">
+  <img src="img/dataset.png" alt="Example of the different modalities of the dataset" width="400"/>
+  <br>
+  <em>Fig.1. Example of the different modalities of the dataset. A) T1 B) FLAIR C) GT</em>
+</p>
+
 
 ## Methodology
 
@@ -27,26 +29,35 @@ The model initializes with either random parameters or using KMeans clustering f
 
 ## Results
 
-The algorithm was rigorously tested across the dataset, with the performance measured using the Dice Score (DSC). The DSC is a statistical validation metric to quantify the similarity between the predicted segmentation and the ground truth. Our model demonstrated strong performance with DSC scores reaching 0.85, 0.80, and 0.81 for White Matter, Gray Matter, and Cerebrospinal Fluid, respectively.
+The algorithm's effectiveness was quantitatively evaluated using the Dice Score (DSC), a metric that computes the similarity between predicted and ground truth segmentations. Tables 1 and 2 present the algorithm's performance metrics alongside comparisons with other segmentation tools. Figure 2 offers a visual representation of the segmentation outcomes achieved with our method.
 
-The results were on par with other segmentation tools like K-Means and SPM, and in some cases, our EM-GMM approach outperformed these established methods. The table below summarizes the performance metrics obtained:
+**Table 1: Evaluation results of the Expectation Maximization Algorithm on the test set**
 
-| Tissue Type | DSC Score |
-|-------------|-----------|
-| White Matter (WM) | 0.85 |
-| Gray Matter (GM) | 0.80 |
-| Cerebrospinal Fluid (CSF) | 0.81 |
+| Initialization | Modalities | GM [DSC]            | WM [DSC]            | CSF [DSC]           | Iterations       | Time [s]          |
+|----------------|------------|---------------------|---------------------|---------------------|------------------|-------------------|
+| KMeans         | T1         | 0.8457 ± 0.0436     | 0.8015 ± 0.0300     | 0.8120 ± 0.0251     | 116 ± 4          | **24.36 ± 1.28**  |
+| KMeans         | T1+FLAIR   | 0.8457 ± 0.0436     | **0.8017 ± 0.0304** | **0.8129 ± 0.0249** | **110 ± 17**     | 51.48 ± 8.10      |
+| Random         | T1         | 0.8025 ± 0.0819     | 0.7284 ± 0.1383     | 0.7860 ± 0.0670     | 346 ± 108        | 65.87 ± 18.42     |
+| Random         | T1+FLAIR   | **0.8468 ± 0.0450** | 0.7978 ± 0.0233     | 0.8082 ± 0.0278     | 333 ± 117        | 147.71 ± 51.16    |
+
+**Table 2: Evaluation results of KMeans and SPM**
+
+| Method   | Initialization | Modalities | GM [DSC]         | WM [DSC]         | CSF [DSC]        | Time [s]         |
+|----------|----------------|------------|------------------|------------------|------------------|------------------|
+| K-means  | K-means ++     | T1         | 0.8222 ± 0.0356  | 0.7464 ± 0.0338  | 0.8542 ± 0.0078  | 3.57 ± 0.12      |
+| K-means  | K-means ++     | T1+FLAIR   | **0.8243 ± 0.0357** | **0.7500 ± 0.0315** | **0.8560 ± 0.0071** | **3.61 ± 0.19**  |
+| SPM      | -              | T1         | **0.75 ± 0.03**  | **0.81 ± 0.03**  | **0.76 ± 0.02**  | -                |
+
 
 For a more detailed analysis and visual representation of the segmentation results, please refer to the figures and tables included in this repository.
+
+<p align="center">
+  <img src="img/results.png" alt="Result of the segmentation using our approach with different initializations and modalities." width="600"/>
+  <br>
+  <em>Fig.2. Result of the segmentation using our approach with different initializations and modalities.</em>
+</p>
+
 
 ## Conclusion
 
 In conclusion, the application of the Expectation Maximization algorithm with Gaussian Mixture Models has proven to be an effective strategy for the segmentation of brain tissues in MRI images. Our methodology not only aligns with the stringent requirements of medical image processing but also showcases the potential to facilitate early diagnosis and treatment planning for neurodegenerative diseases.
-
-The multimodal dataset utilized in this study underscored the robustness of our approach, with the algorithm achieving Dice Score metrics indicative of high segmentation accuracy. Specifically, the scores of 0.85 for White Matter, 0.80 for Gray Matter, and 0.81 for Cerebrospinal Fluid reflect the precision of our model in distinguishing between the complex structures within the brain.
-
-Moreover, when compared to traditional segmentation tools such as K-Means and Statistical Parametric Mapping (SPM), our EM-GMM approach demonstrated competitive, if not superior, performance. This suggests that the integration of probabilistic modeling with clustering algorithms can significantly enhance the outcome of tissue segmentation tasks.
-
-We believe that the insights and findings from our work have substantial implications for the future of medical imaging and the treatment of neurological conditions. As we continue to refine our algorithms and validate our models across larger datasets, we remain committed to advancing the frontier of medical image analysis and improving patient care outcomes.
-
-The journey of this project from concept to implementation has been thoroughly documented within this repository. We encourage researchers, clinicians, and developers to explore our codebase, engage with our findings, and contribute to the ongoing evolution of this promising field.
