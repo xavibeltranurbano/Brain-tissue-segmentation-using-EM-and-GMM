@@ -1,6 +1,8 @@
 # Brain tissue segmentation using Expectation Maximization (EM) algorithm for Gaussian Mixture Models (GMM)
 **Author:** Xavier Beltran Urbano and Frederik Hartmann
 
+[Link to the Manuscript](https://xavibeltranurbano.github.io/assets/pdfs/EM_GMM.pdf)
+
 This repository contains the implementation and results of a novel approach to brain tissue segmentation, combining the Expectation Maximization (EM) algorithm with Gaussian Mixture Models (GMM). Developed at the University of Girona as part of the Erasmus Mundus Joint Master Degree in Medical Imaging and Applications (MAIA), this method aims to enhance the accuracy of medical diagnoses and treatment planning for neurological conditions.
 
 ## Dataset
